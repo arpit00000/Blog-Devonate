@@ -1,0 +1,132 @@
+# Blog Devonate
+
+This repository contains a full-stack blog platform built with Next.js (frontend) and a Node.js/Express JWT authentication backend (`jwt-auth-app`). MongoDB is used for data storage.
+
+---
+
+## Project Structure
+
+```
+blog_devonate/
+├── app/                # Next.js frontend (pages, components, styles)
+├── components/         # Shared React components
+├── hooks/              # Custom React hooks
+├── jwt-auth-app/       # Express/TypeScript JWT authentication backend
+├── lib/                # Shared libraries (e.g., db, auth)
+├── public/             # Static assets
+├── scripts/            # Utility scripts (DB init, admin user, etc.)
+├── styles/             # CSS files
+├── .env.local          # Environment variables
+├── package.json        # Next.js dependencies and scripts
+├── tsconfig.json       # TypeScript config
+└── ...
+```
+
+---
+
+## Prerequisites
+
+- Node.js (v16+ recommended)
+- npm or pnpm
+- MongoDB database (Atlas or local)
+
+---
+
+## 1. Setup Environment Variables
+
+Create a `.env.local` file in the root directory with the following:
+
+```
+MONGODB_URI=<your_mongodb_uri>
+JWT_SECRET=<your_jwt_secret>
+GEMINI_API_KEY=<your_gemini_api_key>
+```
+
+---
+
+## 2. Install Dependencies
+
+From the root directory:
+
+```sh
+pnpm install
+# or
+npm install
+```
+
+For the backend (`jwt-auth-app`):
+
+```sh
+cd jwt-auth-app
+npm install
+```
+
+---
+
+## 3. Initialize the Database (Optional)
+
+You can run the provided scripts to set up indexes and create an admin user:
+
+```sh
+node scripts/init-database.js
+node scripts/create-admin-user.js
+```
+
+---
+
+## 4. Running the Project
+
+### Start the Backend (JWT Auth API)
+
+```sh
+cd jwt-auth-app
+npm run dev
+# or
+npm start
+```
+- The backend will run on [http://localhost:5000](http://localhost:5000) by default.
+
+### Start the Frontend (Next.js App)
+
+In a new terminal, from the root directory:
+
+```sh
+pnpm dev
+# or
+npm run dev
+```
+- The frontend will run on [http://localhost:3000](http://localhost:3000) by default.
+
+---
+
+## 5. Authentication Endpoints
+
+- **Sign Up:** `POST /api/auth/signup` (backend)
+- **Sign In:** `POST /api/auth/signin` (backend)
+
+The frontend app (`/login`, `/signup`) will interact with these endpoints.
+
+---
+
+## 6. Scripts
+
+- `scripts/init-database.js` – Sets up MongoDB indexes.
+- `scripts/create-admin-user.js` – Creates or updates the admin user.
+- `scripts/fix-admin-password.js` – Fixes admin password hash if needed.
+
+---
+
+## 7. Customization
+
+- Update MongoDB database name or collections in the scripts if needed.
+- Adjust environment variables for your deployment.
+
+---
+
+## License
+
+MIT
+
+---
+
+**For more details, see the [jwt-auth-app/README.md](jwt-auth-app/README.md) for backend-specific instructions.**
